@@ -4,6 +4,7 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => ({
+  base: '/sergio-portfolio/',
   plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
