@@ -398,6 +398,14 @@
                         </a>
                     </div>
 
+                    <div class="mt-8 flex justify-center">
+                        <button type="button" @click="copyPortfolioLink"
+                            class="flex items-center gap-3 px-8 py-3 rounded-full border border-white/10 text-white/70 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                            <Link class="w-4 h-4" />
+                            {{ copyLabel }}
+                        </button>
+                    </div>
+
                     <div class="mt-20 flex justify-center gap-8">
                         <a href="https://www.facebook.com/Sergioschultzz" target="_blank" rel="noopener noreferrer"
                             class="p-5 rounded-2xl border border-white/5 hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all">
@@ -447,6 +455,7 @@ import {
     Globe,
     Layers,
     Linkedin,
+    Link,
     Mail,
     Server,
     Sparkles,
@@ -488,6 +497,19 @@ const techGroups = {
 };
 const statsVisible = ref(false);
 const statsRef = ref<HTMLElement | null>(null);
+const portfolioLink = 'https://schultz196.github.io/sergio-portfolio/';
+const copyLabel = ref('Copiar link');
+const copyPortfolioLink = async () => {
+    try {
+        await navigator.clipboard.writeText(portfolioLink);
+        copyLabel.value = 'Link copiado';
+    } catch (error) {
+        copyLabel.value = 'Copie manualmente';
+    }
+    window.setTimeout(() => {
+        copyLabel.value = 'Copiar link';
+    }, 2200);
+};
 const whatsappLink = computed(() => {
     const phone = portfolio.value?.contact?.whatsapp ?? '';
     const digits = phone.replace(/\D/g, '');
