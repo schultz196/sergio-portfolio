@@ -76,10 +76,10 @@
                         {{ portfolio.summary }}
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#contato"
+                      <!--  <a href="#contato"
                             class="px-8 py-4 bg-emerald-500 text-black rounded-full text-xs uppercase tracking-widest font-bold hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20">
                             Vamos Conversar
-                        </a>
+                        </a>  -->
                         <a href="#projetos"
                             class="px-8 py-4 border border-emerald-500/20 text-emerald-400 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-emerald-500/5 transition-all">
                             Ver Projetos
@@ -371,7 +371,7 @@
                 </div>
             </section>
 
-            <section id="contato" class="py-32 px-6 md:px-24 border-t border-white/10 relative overflow-hidden">
+        <!--    <section id="contato" class="py-32 px-6 md:px-24 border-t border-white/10 relative overflow-hidden">
                 <div
                     class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-emerald-500/5 to-transparent -z-10" />
                 <div class="max-w-4xl mx-auto text-center">
@@ -427,7 +427,7 @@
                         {{ portfolio.contact.location }}
                     </div>
                 </div>
-            </section>
+            </section>  -->
 
             <footer
                 class="py-12 px-6 md:px-24 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/20 text-[10px] uppercase tracking-[0.3em]">
