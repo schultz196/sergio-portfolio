@@ -86,10 +86,10 @@
 @keyframes whatsapp-glow {
   0%,
   100% {
-    box-shadow: 0 0 18px rgba(139, 92, 246, 0.28), 0 10px 28px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.28), 0 10px 28px rgba(34, 197, 94, 0.2);
   }
   50% {
-    box-shadow: 0 0 26px rgba(139, 92, 246, 0.45), 0 14px 34px rgba(139, 92, 246, 0.28);
+    box-shadow: 0 0 26px rgba(34, 197, 94, 0.45), 0 14px 34px rgba(34, 197, 94, 0.28);
   }
 }
 
