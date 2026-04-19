@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <button class="md:hidden text-amber-400 text-xl" @click="toggleMenu">
-                    <span v-if="menuOpen">âœ•</span><span v-else>â˜°</span>
+                    <span v-if="menuOpen">?</span><span v-else>?</span>
                 </button>
             </nav>
             <div v-if="menuOpen"
@@ -35,25 +35,25 @@
         </header>
 
         <main>
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  1. HERO
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="home"
                 class="relative min-h-screen flex flex-col justify-end pb-24 px-8 md:px-20 overflow-hidden">
                 <!-- Background foto -->
                 <div class="absolute inset-0 -z-10">
-                    <img src="/src/images/sergio.jpg" alt="" class="w-full h-full object-cover object-top" />
+                    <img src="/images/sergio.jpg" alt="" class="w-full h-full object-cover object-top" />
                     <div class="absolute inset-0 bg-[#080c1e]/75" />
                 </div>
-                <!-- ConteÃºdo bottom-left -->
+                <!-- Conteúdo bottom-left -->
                 <div class="max-w-2xl">
                     <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-4 leading-[1.05]">Sergio Schultz</h1>
                     <p class="text-base md:text-lg font-bold text-white/90 mb-3">
                         Desenvolvedor Web &amp; Criador de Sistemas Digitais
                     </p>
                     <p class="text-sm md:text-base text-white/60 mb-8 leading-relaxed max-w-xl">
-                        Crio sistemas web modernos, funcionais e orientados a resultado â€” do design visual Ã  gestÃ£o
-                        estratÃ©gica de projetos.
+                        Crio sistemas web modernos, funcionais e orientados a resultado — do design visual à gestão
+                        estratégica de projetos.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#contato"
@@ -68,9 +68,9 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-                 2. QUEM Ã‰ SERGIO SCHULTZ
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+                 2. QUEM �? SERGIO SCHULTZ
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="sobre" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
                     <!-- Esquerda: texto -->
@@ -79,27 +79,29 @@
                             class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
                             Sobre Mim
                         </span>
-                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Quem Ã© Sergio Schultz?</h2>
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Quem é Sergio Schultz?</h2>
                         <p class="text-white/70 leading-relaxed mb-4">
-                            Desenvolvedor Web com experiÃªncia em <strong class="text-white">HTML, CSS, JavaScript, PHP e
+                            Desenvolvedor Web com experiência em <strong class="text-white">HTML, CSS, JavaScript, PHP
+                                e
                                 Tailwind</strong>,
-                            atuando na criaÃ§Ã£o de sistemas e interfaces modernas. Especialista na
-                            implementaÃ§Ã£o e gestÃ£o de ambientes <strong class="text-white">Moodle para EAD</strong> e
+                            atuando na criação de sistemas e interfaces modernas. Especialista na
+                            implementação e gestão de ambientes <strong class="text-white">Moodle para EAD</strong> e
                             criador do sistema
-                            de pedidos <strong class="text-white">PedeBem</strong>, focando em soluÃ§Ãµes digitais
+                            de pedidos <strong class="text-white">PedeBem</strong>, focando em soluções digitais
                             eficientes para o mercado
                             online.
                         </p>
                         <p class="text-white/70 leading-relaxed mb-10">
-                            FormaÃ§Ã£o em <strong class="text-white">EducaÃ§Ã£o e MÃºsica</strong> como base complementar Ã 
-                            atuaÃ§Ã£o
-                            tecnolÃ³gica, trazendo uma visÃ£o humanizada e didÃ¡tica para cada projeto.
+                            Formação em <strong class="text-white">Educação e Música</strong> como base
+                            complementar à
+                            atuação
+                            tecnológica, trazendo uma visão humanizada e didática para cada projeto.
                         </p>
                         <!-- Stats -->
                         <div class="grid grid-cols-2 gap-5">
                             <div class="border border-amber-400/40 rounded-2xl p-6">
                                 <div class="text-3xl font-bold text-white mb-1">+20 Anos</div>
-                                <div class="text-sm text-white/50">de experiÃªncia</div>
+                                <div class="text-sm text-white/50">de experiência</div>
                             </div>
                             <div class="border border-rose-500/40 rounded-2xl p-6">
                                 <div class="text-3xl font-bold text-white mb-1">100%</div>
@@ -107,25 +109,25 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Direita: ilustraÃ§Ã£o -->
+                    <!-- Direita: ilustração -->
                     <div
                         class="rounded-3xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-orange-300 via-amber-200 to-orange-400 flex items-center justify-center">
                         <div class="text-center p-8">
-                            <div class="text-8xl mb-4">ðŸ’»</div>
+                            <div class="text-8xl mb-4">�Y'�</div>
                             <p class="text-orange-900/60 font-medium text-sm">Web Developer &amp; Designer</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  3. PEDEBEM
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="projetos"
                 class="relative min-h-[90vh] flex flex-col justify-center px-8 md:px-20 py-24 overflow-hidden">
                 <!-- BG screenshot -->
                 <div class="absolute inset-0 -z-10">
-                    <img src="/src/images/PedeBemTela1.png" alt="" class="w-full h-full object-cover object-top" />
+                    <img src="/images/PedeBemTela1.png" alt="" class="w-full h-full object-cover object-top" />
                     <div class="absolute inset-0 bg-[#080c1e]/80" />
                 </div>
                 <div class="max-w-7xl mx-auto w-full">
@@ -133,20 +135,20 @@
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
                         Projetos em Destaque
                     </span>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-10">PedeBem â€” Sistema de Pedidos</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-10">PedeBem �?" Sistema de Pedidos</h2>
                     <div class="grid md:grid-cols-2 gap-8 items-start">
                         <!-- Card roxo "Sobre o Projeto" -->
                         <div class="bg-violet-600/80 backdrop-blur-sm rounded-2xl p-7">
                             <h3 class="text-xl font-bold mb-3">Sobre o Projeto</h3>
                             <p class="text-white/80 leading-relaxed text-sm">
                                 Sistema de pedidos customizado desenvolvido para agilizar processos
-                                comerciais e a interaÃ§Ã£o com o cliente, com foco em performance e
+                                comerciais e a interação com o cliente, com foco em performance e
                                 clareza visual.
                             </p>
                         </div>
-                        <!-- Destaques tÃ©cnicos -->
+                        <!-- Destaques técnicos -->
                         <div>
-                            <h3 class="text-xl font-bold mb-5">Destaques TÃ©cnicos</h3>
+                            <h3 class="text-xl font-bold mb-5">Destaques Técnicos</h3>
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-start gap-3 text-white/80 text-sm">
                                     <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
@@ -158,7 +160,7 @@
                                 </li>
                                 <li class="flex items-start gap-3 text-white/80 text-sm">
                                     <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-                                    Layout validado para operaÃ§Ã£o do dia a dia
+                                    Layout validado para operação do dia a dia
                                 </li>
                             </ul>
                             <!-- Tags -->
@@ -177,29 +179,29 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-                 4. AUTOMAÃ‡Ã•ES COM TYPEBOT
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+                 4. AUTOMA�?�.ES COM TYPEBOT
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section class="min-h-[80vh] flex flex-col md:flex-row">
                 <!-- Esquerda: screenshot -->
                 <div class="md:w-1/2 min-h-[40vh] md:min-h-full overflow-hidden">
-                    <img src="/src/images/typebot.png" alt="Typebot Flow"
+                    <img src="/images/typebot.png" alt="Typebot Flow"
                         class="w-full h-full object-cover object-left" />
                 </div>
-                <!-- Direita: conteÃºdo -->
+                <!-- Direita: conteúdo -->
                 <div class="md:w-1/2 bg-[#080c1e] px-8 md:px-16 py-16 md:py-24 flex flex-col justify-center">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 self-start">
                         Projetos em Destaque
                     </span>
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6 leading-tight">
-                        AutomaÃ§Ãµes Inteligentes com Typebot
+                        Automações Inteligentes com Typebot
                     </h2>
                     <p class="text-white/65 leading-relaxed mb-8 text-sm md:text-base">
                         Desenvolvimento de <strong class="text-white">bots de atendimento e triagem</strong> utilizando
                         a plataforma Typebot
-                        para otimizaÃ§Ã£o de leads. Fluxos lÃ³gicos avanÃ§ados com integraÃ§Ã£o de APIs para
-                        automaÃ§Ã£o de processos comerciais e atendimento ao cliente.
+                        para otimização de leads. Fluxos lógicos avançados com integração de APIs para
+                        automação de processos comerciais e atendimento ao cliente.
                     </p>
                     <div class="flex flex-wrap gap-3">
                         <span v-for="tech in automacaoProject?.technologies" :key="tech"
@@ -210,19 +212,20 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  5. TECNOLOGIAS & ESPECIALIDADES
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="tecnologias" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                        Stack TÃ©cnica
+                        Stack Técnica
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Tecnologias &amp; Especialidades</h2>
                     <p class="text-white/55 max-w-3xl mb-14 leading-relaxed">
-                        SeleÃ§Ã£o enxuta e estratÃ©gica de tecnologias com prioridade no que gera impacto real em produto,
-                        performance e automaÃ§Ã£o.
+                        Seleção enxuta e estratégica de tecnologias com prioridade no que gera impacto real em
+                        produto,
+                        performance e automação.
                     </p>
                     <!-- 3 colunas -->
                     <div class="grid md:grid-cols-3 gap-10">
@@ -235,36 +238,36 @@
                             <ul class="space-y-3">
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">PHP</strong> â€” Backend</span>
+                                    <span><strong class="text-white">PHP</strong> �?" Backend</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">JavaScript</strong> â€” Frontend</span>
+                                    <span><strong class="text-white">JavaScript</strong> �?" Frontend</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">CSS</strong> â€” UI Styling</span>
+                                    <span><strong class="text-white">CSS</strong> �?" UI Styling</span>
                                 </li>
                             </ul>
                         </div>
-                        <!-- SecundÃ¡rias -->
+                        <!-- Secundárias -->
                         <div>
                             <div class="flex items-center gap-3 mb-6">
                                 <Layers class="w-8 h-8 text-amber-400" />
-                                <h3 class="text-xl font-bold">SecundÃ¡rias</h3>
+                                <h3 class="text-xl font-bold">Secundárias</h3>
                             </div>
                             <ul class="space-y-3">
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Bootstrap</strong> â€” Frontend</span>
+                                    <span><strong class="text-white">Bootstrap</strong> �?" Frontend</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Tailwind</strong> â€” Frontend</span>
+                                    <span><strong class="text-white">Tailwind</strong> �?" Frontend</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Ajax</strong> â€” IntegraÃ§Ãµes</span>
+                                    <span><strong class="text-white">Ajax</strong> �?" Integrações</span>
                                 </li>
                             </ul>
                         </div>
@@ -277,15 +280,15 @@
                             <ul class="space-y-3">
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Moodle</strong> â€” EAD</span>
+                                    <span><strong class="text-white">Moodle</strong> �?" EAD</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Typebot</strong> â€” AutomaÃ§Ã£o</span>
+                                    <span><strong class="text-white">Typebot</strong> — Automação</span>
                                 </li>
                                 <li class="flex items-center gap-2 text-white/80">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span><strong class="text-white">Sistemas</strong> â€” AutomaÃ§Ã£o</span>
+                                    <span><strong class="text-white">Sistemas</strong> — Automação</span>
                                 </li>
                             </ul>
                         </div>
@@ -293,20 +296,20 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-                 6. PROFICIÃŠNCIA
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+                 6. PROFICI�SNCIA
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="proficiencia" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                        ProficiÃªncia
+                        Proficiência
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">O Quanto Posso Impactar Sua Empresa?
                     </h2>
                     <p class="text-white/55 max-w-3xl mb-14 leading-relaxed">
-                        Minha versatilidade permite atuar desde o design visual atÃ© a gestÃ£o estratÃ©gica de projetos,
-                        garantindo uma entrega tÃ©cnica refinada e humanizada.
+                        Minha versatilidade permite atuar desde o design visual até a gestão estratégica de projetos,
+                        garantindo uma entrega técnica refinada e humanizada.
                     </p>
                     <!-- 2x2 grid de barras -->
                     <div class="grid md:grid-cols-2 gap-x-16 gap-y-10" ref="statsRef">
@@ -332,7 +335,7 @@
                             </div>
                             <p class="text-white/70 text-sm">EAD / Moodle</p>
                         </div>
-                        <!-- GestÃ£o -->
+                        <!-- Gestão -->
                         <div>
                             <div class="flex items-center gap-4 mb-2">
                                 <div class="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
@@ -341,7 +344,7 @@
                                 </div>
                                 <span class="text-white font-bold text-sm w-10 shrink-0">86%</span>
                             </div>
-                            <p class="text-white/70 text-sm">GestÃ£o de Projetos</p>
+                            <p class="text-white/70 text-sm">Gestão de Projetos</p>
                         </div>
                         <!-- PHP -->
                         <div>
@@ -358,18 +361,18 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  7. WEB DESIGNER & DESENVOLVEDOR
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="experiencia" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                        TrajetÃ³ria Profissional
+                        Trajetória Profissional
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Web Designer &amp; Desenvolvedor</h2>
                     <p class="text-white/60 mb-12 font-medium">
-                        <strong class="text-white/90">AutÃ´nomo / Consultoria Tech</strong> â€” Longa data
+                        <strong class="text-white/90">Autônomo / Consultoria Tech</strong> �?" Longa data
                     </p>
                     <!-- 3 colunas de achievements -->
                     <div class="grid md:grid-cols-3 gap-8">
@@ -385,19 +388,19 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  8. MOODLE & GESTOR DE PROJETOS
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                        TrajetÃ³ria Profissional
+                        Trajetória Profissional
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Especialista em Moodle &amp; Gestor
                         de Projetos Online</h2>
                     <p class="text-white/60 mb-12 font-medium">
-                        <strong class="text-white/90">InstituiÃ§Ãµes de Ensino e EAD</strong> â€” ContÃ­nuo
+                        <strong class="text-white/90">Instituições de Ensino e EAD</strong> �?" Contínuo
                     </p>
                     <!-- 2 cards com imagem -->
                     <div class="grid md:grid-cols-2 gap-8">
@@ -405,31 +408,31 @@
                         <div>
                             <h3 class="text-xl font-bold mb-2">Plataforma Moodle</h3>
                             <p class="text-white/55 text-sm leading-relaxed mb-6">
-                                ConfiguraÃ§Ã£o e administraÃ§Ã£o tÃ©cnica para ambientes virtuais de
-                                aprendizagem, com aplicaÃ§Ã£o de metodologias de GerÃªncia de
+                                Configuração e administração técnica para ambientes virtuais de
+                                aprendizagem, com aplicação de metodologias de Gerência de
                                 Projetos Online.
                             </p>
                             <div
                                 class="rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-violet-400 via-orange-300 to-amber-300 flex items-center justify-center">
                                 <div class="text-center p-6">
-                                    <div class="text-7xl mb-3">ðŸŽ“</div>
+                                    <div class="text-7xl mb-3">�YZ"</div>
                                     <p class="text-violet-900/60 font-medium text-sm">Moodle / e-Learning</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- AutomaÃ§Ã£o de Atendimento -->
+                        <!-- Automação de Atendimento -->
                         <div>
-                            <h3 class="text-xl font-bold mb-2">AutomaÃ§Ã£o de Atendimento</h3>
+                            <h3 class="text-xl font-bold mb-2">Automação de Atendimento</h3>
                             <p class="text-white/55 text-sm leading-relaxed mb-6">
-                                Desenvolvimento de assistentes virtuais e automaÃ§Ã£o de atendimento
+                                Desenvolvimento de assistentes virtuais e automação de atendimento
                                 via Typebot, estruturando cursos e fluxos de trabalho de forma
                                 eficiente.
                             </p>
                             <div
                                 class="rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-orange-300 via-pink-300 to-amber-200 flex items-center justify-center">
                                 <div class="text-center p-6">
-                                    <div class="text-7xl mb-3">ðŸ¤–</div>
-                                    <p class="text-orange-900/60 font-medium text-sm">AutomaÃ§Ã£o / Typebot</p>
+                                    <div class="text-7xl mb-3">�Y�-</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">Automação / Typebot</p>
                                 </div>
                             </div>
                         </div>
@@ -437,32 +440,33 @@
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-                 9. FORMAÃ‡ÃƒO EM MÃšSICA & EDUCAÃ‡ÃƒO
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+                 9. FORMA�?�fO EM M�sSICA & EDUCA�?�fO
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
                 <div class="max-w-7xl mx-auto">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                        TrajetÃ³ria Profissional
+                        Trajetória Profissional
                     </span>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">FormaÃ§Ã£o em MÃºsica &amp; EducaÃ§Ã£o
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">Formação em Música &amp;
+                        Educação
                     </h2>
                     <!-- 2 cards: imagem em cima, texto abaixo -->
                     <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Especialista em MÃºsica -->
+                        <!-- Especialista em Música -->
                         <div>
                             <div
                                 class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 bg-gradient-to-br from-orange-300 via-amber-200 to-rose-300 flex items-center justify-center">
                                 <div class="text-center p-6">
-                                    <div class="text-7xl mb-3">ðŸŽµ</div>
-                                    <p class="text-orange-900/60 font-medium text-sm">MÃºsica & RegÃªncia</p>
+                                    <div class="text-7xl mb-3">�YZ�</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">Música & Regência</p>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-bold mb-3">Especialista em MÃºsica e RegÃªncia</h3>
+                            <h3 class="text-xl font-bold mb-3">Especialista em Música e Regência</h3>
                             <p class="text-white/55 text-sm leading-relaxed">
-                                AtuaÃ§Ã£o especializada em MÃºsica na Igreja, regÃªncia de coro de vozes e
-                                aplicaÃ§Ã£o de Licenciatura em MÃºsica para desenvolvimento de grupos
+                                Atuação especializada em Música na Igreja, regência de coro de vozes e
+                                aplicação de Licenciatura em Música para desenvolvimento de grupos
                                 vocais.
                             </p>
                         </div>
@@ -471,26 +475,26 @@
                             <div
                                 class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 bg-gradient-to-br from-amber-200 via-orange-300 to-rose-300 flex items-center justify-center">
                                 <div class="text-center p-6">
-                                    <div class="text-7xl mb-3">ðŸŽ¸</div>
-                                    <p class="text-orange-900/60 font-medium text-sm">ViolÃ£o Â· Teclado Â· Flauta</p>
+                                    <div class="text-7xl mb-3">�YZ�</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">Violão · Teclado · Flauta</p>
                                 </div>
                             </div>
                             <h3 class="text-xl font-bold mb-3">Professor de Instrumentos Musicais</h3>
                             <p class="text-white/55 text-sm leading-relaxed">
-                                InstruÃ§Ã£o tÃ©cnica em ViolÃ£o, Teclado e Flauta Doce para diferentes faixas
-                                etÃ¡rias, com material pedagÃ³gico prÃ³prio baseado na formaÃ§Ã£o em
-                                MagistÃ©rio.
+                                Instrução técnica em Violão, Teclado e Flauta Doce para diferentes faixas
+                                etárias, com material pedagógico próprio baseado na formação em
+                                Magistério.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+            <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
                  10. CONTATO
-            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
             <section id="contato" class="min-h-[80vh] flex flex-col md:flex-row bg-[#080c1e]">
-                <!-- Esquerda: conteÃºdo -->
+                <!-- Esquerda: conteúdo -->
                 <div class="md:w-1/2 px-8 md:px-16 py-20 md:py-28 flex flex-col justify-center">
                     <span
                         class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 self-start">
@@ -498,9 +502,9 @@
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Vamos Conversar?</h2>
                     <p class="text-white/65 leading-relaxed mb-10 max-w-md">
-                        Pronto para levar seu negÃ³cio ao prÃ³ximo nÃ­vel? DisponÃ­vel para <strong
+                        Pronto para levar seu negócio ao próximo nível? Disponível para <strong
                             class="text-white">projetos freelance</strong> e
-                        <strong class="text-white">parcerias estratÃ©gicas</strong>. EspÃ­rito Santo, Brasil.
+                        <strong class="text-white">parcerias estratégicas</strong>. Espírito Santo, Brasil.
                     </p>
                     <!-- Cards de contato -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -511,7 +515,7 @@
                                 <Send class="w-4 h-4 text-amber-400" />
                                 <span class="font-bold text-white">WhatsApp</span>
                             </div>
-                            <p class="text-white/50 text-sm">Resposta rÃ¡pida e direta para alinhar seu projeto.</p>
+                            <p class="text-white/50 text-sm">Resposta rápida e direta para alinhar seu projeto.</p>
                         </a>
                         <a href="mailto:contato@sergioschultz.com"
                             class="border border-rose-500/40 rounded-2xl p-5 hover:bg-rose-500/5 transition-all">
@@ -524,12 +528,12 @@
                         <div class="border border-amber-400/40 rounded-2xl p-5 sm:col-span-2">
                             <div class="flex items-center gap-2 mb-2">
                                 <MapPin class="w-4 h-4 text-amber-400" />
-                                <span class="font-bold text-white">LocalizaÃ§Ã£o</span>
+                                <span class="font-bold text-white">Localização</span>
                             </div>
-                            <p class="text-white/50 text-sm">EspÃ­rito Santo, Brasil</p>
+                            <p class="text-white/50 text-sm">Espírito Santo, Brasil</p>
                         </div>
                     </div>
-                    <!-- BotÃµes CTA -->
+                    <!-- Botões CTA -->
                     <div class="flex flex-wrap gap-4">
                         <a v-if="portfolio.contact?.whatsapp" :href="whatsappLink" target="_blank"
                             rel="noopener noreferrer"
@@ -542,11 +546,11 @@
                         </a>
                     </div>
                 </div>
-                <!-- Direita: ilustraÃ§Ã£o -->
+                <!-- Direita: ilustração -->
                 <div
                     class="md:w-1/2 min-h-[50vh] md:min-h-full bg-gradient-to-br from-orange-300 via-amber-200 to-rose-300 flex items-center justify-center">
                     <div class="text-center p-8">
-                        <div class="text-8xl mb-4">ðŸ¤</div>
+                        <div class="text-8xl mb-4">�Y��</div>
                         <p class="text-orange-900/60 font-medium">Vamos trabalhar juntos!</p>
                     </div>
                 </div>
@@ -555,7 +559,7 @@
             <!-- Footer -->
             <footer
                 class="py-8 px-8 md:px-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-white/20 text-[10px] uppercase tracking-[0.3em]">
-                <div>Â© 2026 SERGIO SCHULTZ â€¢ Web Designer &amp; Desenvolvedor</div>
+                <div>© 2026 SERGIO SCHULTZ �?� Web Designer &amp; Desenvolvedor</div>
                 <div class="flex gap-8">
                     <a href="https://www.linkedin.com/in/sergio-schultz-48b779280/" target="_blank"
                         rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">LinkedIn</a>
@@ -586,13 +590,13 @@ const menuOpen = ref(false);
 const toggleMenu = () => { menuOpen.value = !menuOpen.value; };
 
 const navItems = [
-    { id: 'home',        label: 'Home' },
-    { id: 'sobre',       label: 'Sobre' },
-    { id: 'projetos',    label: 'Projetos' },
+    { id: 'home', label: 'Home' },
+    { id: 'sobre', label: 'Sobre' },
+    { id: 'projetos', label: 'Projetos' },
     { id: 'tecnologias', label: 'Tecnologias' },
-    { id: 'proficiencia',label: 'ProficiÃªncia' },
-    { id: 'experiencia', label: 'TrajetÃ³ria' },
-    { id: 'contato',     label: 'Contato' },
+    { id: 'proficiencia', label: 'Proficiência' },
+    { id: 'experiencia', label: 'Trajetória' },
+    { id: 'contato', label: 'Contato' },
 ];
 
 const activeSection = ref('home');
@@ -602,14 +606,14 @@ const cursorRef = ref<HTMLElement | null>(null);
 const store = usePortfolioStore();
 const portfolio = computed(() => store.portfolio);
 const pedebemProject = computed(() => portfolio.value?.projects.find(p => p.name === 'PedeBem'));
-const automacaoProject = computed(() => portfolio.value?.projects.find(p => p.name === 'AutomaÃ§Ãµes Inteligentes'));
+const automacaoProject = computed(() => portfolio.value?.projects.find(p => p.name === 'Automações Inteligentes'));
 
-// TÃ­tulos curtos para os achievements de cada experiÃªncia
+// Títulos curtos para os achievements de cada experiência
 const achTitles: Record<number, string[]> = {
-    0: ['Interfaces Modernas', 'IntegraÃ§Ã£o de Sistemas', 'PedeBem'],
-    1: ['Plataforma Moodle', 'GerÃªncia de Projetos', 'AutomaÃ§Ã£o Typebot'],
-    2: ['MÃºsica na Igreja', 'RegÃªncia Coral', 'Licenciatura em MÃºsica'],
-    3: ['ViolÃ£o & Teclado', 'Flauta Doce', 'Material PedagÃ³gico'],
+    0: ['Interfaces Modernas', 'Integração de Sistemas', 'PedeBem'],
+    1: ['Plataforma Moodle', 'Gerência de Projetos', 'Automação Typebot'],
+    2: ['Música na Igreja', 'Regência Coral', 'Licenciatura em Música'],
+    3: ['Violão & Teclado', 'Flauta Doce', 'Material Pedagógico'],
 };
 
 const statsVisible = ref(false);
