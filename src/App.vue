@@ -42,7 +42,7 @@
                 class="relative min-h-screen flex flex-col justify-end pb-24 px-8 md:px-20 overflow-hidden">
                 <!-- Background foto -->
                 <div class="absolute inset-0 -z-10">
-                    <img src="/images/sergio.jpg" alt="" class="w-full h-full object-cover object-top" />
+                    <img :src="`${base}images/sergio.jpg`" alt="" class="w-full h-full object-cover object-top" />
                     <div class="absolute inset-0 bg-[#080c1e]/75" />
                 </div>
                 <!-- Conteúdo bottom-left -->
@@ -127,7 +127,7 @@
                 class="relative min-h-[90vh] flex flex-col justify-center px-8 md:px-20 py-24 overflow-hidden">
                 <!-- BG screenshot -->
                 <div class="absolute inset-0 -z-10">
-                    <img src="/images/PedeBemTela1.png" alt="" class="w-full h-full object-cover object-top" />
+                    <img :src="`${base}images/PedeBemTela1.png`" alt="" class="w-full h-full object-cover object-top" />
                     <div class="absolute inset-0 bg-[#080c1e]/80" />
                 </div>
                 <div class="max-w-7xl mx-auto w-full">
@@ -185,8 +185,7 @@
             <section class="min-h-[80vh] flex flex-col md:flex-row">
                 <!-- Esquerda: screenshot -->
                 <div class="md:w-1/2 min-h-[40vh] md:min-h-full overflow-hidden">
-                    <img src="/images/typebot.png" alt="Typebot Flow"
-                        class="w-full h-full object-cover object-left" />
+                    <img :src="`${base}images/typebot.png`" alt="Typebot Flow" class="w-full h-full object-cover object-left" />
                 </div>
                 <!-- Direita: conteúdo -->
                 <div class="md:w-1/2 bg-[#080c1e] px-8 md:px-16 py-16 md:py-24 flex flex-col justify-center">
@@ -586,6 +585,7 @@ import {
 } from 'lucide-vue-next';
 import { usePortfolioStore } from './stores/portfolio';
 
+const base = import.meta.env.BASE_URL;
 const menuOpen = ref(false);
 const toggleMenu = () => { menuOpen.value = !menuOpen.value; };
 
