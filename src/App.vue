@@ -1,618 +1,599 @@
-<template>
+﻿<template>
     <div
-        class="bg-transparent text-white font-sans selection:bg-violet-500 selection:text-white scroll-smooth overflow-x-hidden">
+        class="bg-[#080c1e] text-white font-sans scroll-smooth overflow-x-hidden selection:bg-amber-400 selection:text-black">
         <div ref="cursorRef" class="custom-cursor" aria-hidden="true"></div>
 
-        <!-- Fundo gradiente fixo -->
-        <div class="fixed inset-0 -z-20 pointer-events-none" aria-hidden="true">
-            <div class="absolute inset-0 bg-[#07040f]" />
-            <div class="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-violet-700/20 blur-[140px]" />
-            <div class="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-violet-900/15 blur-[120px]" />
-            <div class="absolute top-[40%] left-[40%] w-[40vw] h-[40vw] rounded-full bg-fuchsia-800/10 blur-[100px]" />
-        </div>
-
-        <!-- Barra de progresso de scroll -->
+        <!-- Barra de progresso -->
         <div class="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-white/5">
-            <div class="h-full bg-gradient-to-r from-violet-600 to-fuchsia-400 transition-all duration-150"
-                :style="{ width: scrollProgress + '%' }" />
+            <div class="h-full bg-amber-400 transition-all duration-150" :style="{ width: scrollProgress + '%' }" />
         </div>
 
-        <!-- Header / Nav -->
-        <header
-            class="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-[#07040f]/70 border-b border-violet-500/10 shadow-[0_1px_0_rgba(139,92,246,0.08)]">
-            <nav class="max-w-6xl mx-auto px-6 py-3 md:py-4 flex items-center justify-between">
-                <a href="#home"
-                    class="text-xl font-bold tracking-tighter bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent animate-fade-in-up">
-                    SERGIO SCHULTZ
-                </a>
+        <!-- Nav -->
+        <header class="fixed top-0 left-0 right-0 z-40 bg-[#080c1e]/80 backdrop-blur-md border-b border-white/5">
+            <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="#home" class="text-lg font-bold tracking-tight text-amber-400">SERGIO SCHULTZ</a>
                 <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.2em] text-white/40">
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'home' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#home">Home</a>
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'projetos' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#projetos">Projetos</a>
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'sobre' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#sobre">Tecnologias</a>
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'proeficiencia' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#proeficiencia">Sobre</a>
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'experiencia' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#experiencia">Experiência</a>
-                    <a class="transition-colors duration-200"
-                        :class="activeSection === 'contato' ? 'text-violet-300' : 'hover:text-violet-300'"
-                        href="#contato">Contato</a>
+                    <a v-for="item in navItems" :key="item.id" :href="'#' + item.id"
+                        class="transition-colors duration-200"
+                        :class="activeSection === item.id ? 'text-amber-400' : 'hover:text-amber-400'">
+                        {{ item.label }}
+                    </a>
                 </div>
-                <button class="md:hidden text-violet-400 p-1" @click="toggleMenu">
-                    <span v-if="menuOpen">✕</span>
-                    <span v-else>☰</span>
+                <button class="md:hidden text-amber-400 text-xl" @click="toggleMenu">
+                    <span v-if="menuOpen">âœ•</span><span v-else>â˜°</span>
                 </button>
             </nav>
             <div v-if="menuOpen"
-                class="md:hidden absolute left-0 right-0 top-full border-t border-violet-500/10 bg-[#07040f]/95 backdrop-blur-xl shadow-lg">
-                <div class="flex flex-col px-6 py-6 gap-5 text-violet-300 uppercase tracking-[0.25em] text-xs">
-                    <a href="#home" @click="toggleMenu"
-                        :class="activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Home</a>
-                    <a href="#projetos" @click="toggleMenu"
-                        :class="activeSection === 'projetos' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Projetos</a>
-                    <a href="#sobre" @click="toggleMenu"
-                        :class="activeSection === 'sobre' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Tecnologias</a>
-                    <a href="#proeficiencia" @click="toggleMenu"
-                        :class="activeSection === 'proeficiencia' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Sobre</a>
-                    <a href="#experiencia" @click="toggleMenu"
-                        :class="activeSection === 'experiencia' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Experiência</a>
-                    <a href="#contato" @click="toggleMenu"
-                        :class="activeSection === 'contato' ? 'text-white' : 'text-white/50 hover:text-violet-300'">Contato</a>
+                class="md:hidden absolute left-0 right-0 top-full border-t border-amber-500/10 bg-[#080c1e]/95 backdrop-blur-xl">
+                <div class="flex flex-col px-6 py-6 gap-5 uppercase tracking-[0.2em] text-xs">
+                    <a v-for="item in navItems" :key="item.id" :href="'#' + item.id" @click="toggleMenu"
+                        :class="activeSection === item.id ? 'text-amber-400' : 'text-white/50 hover:text-amber-400'">
+                        {{ item.label }}
+                    </a>
                 </div>
             </div>
         </header>
 
         <main>
-            <!-- ═══════════════ HERO ═══════════════ -->
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 1. HERO
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
             <section id="home"
-                class="min-h-screen px-6 md:px-24 pt-24 md:pt-20 flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto relative">
-                <!-- Orbe de fundo do hero -->
-                <div
-                    class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[60vw] h-[60vw] bg-violet-600/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
-
-                <div class="flex-1 space-y-6">
-                    <!-- Badge de disponibilidade -->
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/20 bg-violet-500/5 backdrop-blur-sm text-[10px] uppercase tracking-widest text-violet-300/80">
-                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-                        Disponível para novos projetos
-                    </div>
-
-                    <!-- Typing title -->
-                    <span
-                        class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-violet-500/50 block typing-title">
-                        Desenvolvedor Web & Criador de Sistemas Digitais
-                    </span>
-
-                    <!-- Nome -->
-                    <h1 class="text-5xl md:text-[6vw] font-bold leading-[0.9] tracking-tighter">
-                        Sergio <br />
-                        <span
-                            class="italic serif bg-gradient-to-r from-violet-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent">Schultz</span>
-                    </h1>
-
-                    <!-- Resumo -->
-                    <p class="max-w-lg text-base md:text-lg text-white/55 font-normal leading-relaxed border-l-2 border-violet-500/30 pl-5">
-                        {{ portfolio.summary }}
+                class="relative min-h-screen flex flex-col justify-end pb-24 px-8 md:px-20 overflow-hidden">
+                <!-- Background foto -->
+                <div class="absolute inset-0 -z-10">
+                    <img src="/src/images/sergio.jpg" alt="" class="w-full h-full object-cover object-top" />
+                    <div class="absolute inset-0 bg-[#080c1e]/75" />
+                </div>
+                <!-- ConteÃºdo bottom-left -->
+                <div class="max-w-2xl">
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-4 leading-[1.05]">Sergio Schultz</h1>
+                    <p class="text-base md:text-lg font-bold text-white/90 mb-3">
+                        Desenvolvedor Web &amp; Criador de Sistemas Digitais
                     </p>
-
-                    <!-- CTAs -->
-                    <div class="flex flex-wrap gap-4 pt-2">
+                    <p class="text-sm md:text-base text-white/60 mb-8 leading-relaxed max-w-xl">
+                        Crio sistemas web modernos, funcionais e orientados a resultado â€” do design visual Ã  gestÃ£o
+                        estratÃ©gica de projetos.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
                         <a href="#contato"
-                            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-full text-xs uppercase tracking-widest font-bold hover:from-violet-500 hover:to-fuchsia-500 transition-all shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-105">
+                            class="px-7 py-3 bg-amber-400 text-black font-bold rounded-full text-sm hover:bg-amber-300 transition-all">
                             Vamos Conversar
                         </a>
                         <a href="#projetos"
-                            class="inline-flex items-center gap-2 px-8 py-4 border border-violet-500/25 text-violet-300 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-violet-500/10 hover:border-violet-500/40 transition-all backdrop-blur-sm">
+                            class="px-7 py-3 border-2 border-amber-400 text-amber-400 font-bold rounded-full text-sm hover:bg-amber-400/10 transition-all">
                             Ver Projetos
-                            <ChevronDown class="w-3.5 h-3.5 rotate-[-90deg]" />
                         </a>
                     </div>
                 </div>
+            </section>
 
-                <!-- Foto -->
-                <div class="relative w-full md:w-[360px] lg:w-[400px] aspect-square shrink-0">
-                    <!-- Glow atrás da foto -->
-                    <div
-                        class="absolute inset-[-10%] rounded-[40px] bg-gradient-to-br from-violet-600/30 to-fuchsia-600/20 blur-[50px] -z-10" />
-                    <!-- Bordas decorativas rotacionadas -->
-                    <div
-                        class="absolute inset-0 border border-violet-500/15 rounded-3xl rotate-6 -z-10 bg-violet-500/3" />
-                    <div class="absolute inset-0 border border-fuchsia-500/10 rounded-3xl -rotate-3 -z-10" />
-                    <!-- Container da imagem -->
-                    <div
-                        class="w-full h-full rounded-3xl overflow-hidden border border-violet-500/20 bg-zinc-950 shadow-2xl shadow-violet-900/30 group relative">
-                        <img src="/src/images/sergio.jpg" alt="Sergio Schultz"
-                            class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                            referrerpolicy="no-referrer" />
-                        <!-- Overlay gradiente na base -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-violet-950/60 via-transparent to-transparent" />
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 2. QUEM Ã‰ SERGIO SCHULTZ
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="sobre" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                    <!-- Esquerda: texto -->
+                    <div>
+                        <span
+                            class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                            Sobre Mim
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Quem Ã© Sergio Schultz?</h2>
+                        <p class="text-white/70 leading-relaxed mb-4">
+                            Desenvolvedor Web com experiÃªncia em <strong class="text-white">HTML, CSS, JavaScript, PHP e
+                                Tailwind</strong>,
+                            atuando na criaÃ§Ã£o de sistemas e interfaces modernas. Especialista na
+                            implementaÃ§Ã£o e gestÃ£o de ambientes <strong class="text-white">Moodle para EAD</strong> e
+                            criador do sistema
+                            de pedidos <strong class="text-white">PedeBem</strong>, focando em soluÃ§Ãµes digitais
+                            eficientes para o mercado
+                            online.
+                        </p>
+                        <p class="text-white/70 leading-relaxed mb-10">
+                            FormaÃ§Ã£o em <strong class="text-white">EducaÃ§Ã£o e MÃºsica</strong> como base complementar Ã 
+                            atuaÃ§Ã£o
+                            tecnolÃ³gica, trazendo uma visÃ£o humanizada e didÃ¡tica para cada projeto.
+                        </p>
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="border border-amber-400/40 rounded-2xl p-6">
+                                <div class="text-3xl font-bold text-white mb-1">+20 Anos</div>
+                                <div class="text-sm text-white/50">de experiÃªncia</div>
+                            </div>
+                            <div class="border border-rose-500/40 rounded-2xl p-6">
+                                <div class="text-3xl font-bold text-white mb-1">100%</div>
+                                <div class="text-sm text-white/50">comprometimento</div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Badge flutuante -->
+                    <!-- Direita: ilustraÃ§Ã£o -->
                     <div
-                        class="absolute -bottom-4 -right-4 bg-[#0f0a1e] border border-violet-500/20 rounded-2xl px-4 py-3 shadow-xl shadow-violet-900/30 backdrop-blur-sm">
-                        <div class="text-2xl font-bold text-violet-300 leading-none">+20</div>
-                        <div class="text-[9px] uppercase tracking-widest text-white/40 mt-0.5">Anos exp.</div>
+                        class="rounded-3xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-orange-300 via-amber-200 to-orange-400 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <div class="text-8xl mb-4">ðŸ’»</div>
+                            <p class="text-orange-900/60 font-medium text-sm">Web Developer &amp; Designer</p>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Seta de scroll -->
-                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-violet-500/40 animate-bounce hidden md:block">
-                    <ChevronDown class="w-5 h-5" />
                 </div>
             </section>
 
-            <!-- ═══════════════ PROJETOS ═══════════════ -->
-            <section id="projetos" class="py-32 px-6 md:px-24">
-                <div class="max-w-6xl mx-auto">
-                    <!-- Header da seção -->
-                    <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 3. PEDEBEM
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="projetos"
+                class="relative min-h-[90vh] flex flex-col justify-center px-8 md:px-20 py-24 overflow-hidden">
+                <!-- BG screenshot -->
+                <div class="absolute inset-0 -z-10">
+                    <img src="/src/images/PedeBemTela1.png" alt="" class="w-full h-full object-cover object-top" />
+                    <div class="absolute inset-0 bg-[#080c1e]/80" />
+                </div>
+                <div class="max-w-7xl mx-auto w-full">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
+                        Projetos em Destaque
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-10">PedeBem â€” Sistema de Pedidos</h2>
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <!-- Card roxo "Sobre o Projeto" -->
+                        <div class="bg-violet-600/80 backdrop-blur-sm rounded-2xl p-7">
+                            <h3 class="text-xl font-bold mb-3">Sobre o Projeto</h3>
+                            <p class="text-white/80 leading-relaxed text-sm">
+                                Sistema de pedidos customizado desenvolvido para agilizar processos
+                                comerciais e a interaÃ§Ã£o com o cliente, com foco em performance e
+                                clareza visual.
+                            </p>
+                        </div>
+                        <!-- Destaques tÃ©cnicos -->
                         <div>
-                            <div
-                                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-[10px] uppercase tracking-widest text-violet-400/70 mb-6">
-                                <Sparkles class="w-3 h-3" />
-                                Projetos em Destaque
+                            <h3 class="text-xl font-bold mb-5">Destaques TÃ©cnicos</h3>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start gap-3 text-white/80 text-sm">
+                                    <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                                    Dashboard com indicadores essenciais em destaque
+                                </li>
+                                <li class="flex items-start gap-3 text-white/80 text-sm">
+                                    <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                                    Componentes responsivos e prontos para escalar
+                                </li>
+                                <li class="flex items-start gap-3 text-white/80 text-sm">
+                                    <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                                    Layout validado para operaÃ§Ã£o do dia a dia
+                                </li>
+                            </ul>
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span v-for="tech in pedebemProject?.technologies" :key="tech"
+                                    class="text-[11px] font-semibold uppercase tracking-widest text-amber-400 border border-amber-400/50 px-4 py-1.5 rounded-full">
+                                    {{ tech }}
+                                </span>
                             </div>
-                            <h3 class="text-5xl font-bold tracking-tighter">Soluções <span
-                                    class="italic serif bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">Digitais</span>
-                            </h3>
+                            <a :href="pedebemProject?.url" target="_blank" rel="noopener noreferrer"
+                                class="inline-block px-7 py-3 bg-amber-400 text-black font-bold rounded-full text-sm hover:bg-amber-300 transition-all">
+                                Ver Projeto
+                            </a>
                         </div>
-                        <p class="max-w-xs text-white/35 text-sm font-normal leading-relaxed">
-                            Uma seleção de trabalhos que demonstram minha capacidade técnica e visão de produto.
-                        </p>
-                    </div>
-
-                    <!-- Card destaque PedeBem -->
-                    <div v-if="pedebemProject" class="relative mb-16">
-                        <!-- Brilho do card -->
-                        <div
-                            class="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-500/10 to-fuchsia-500/5 blur-xl -z-10 scale-[0.98]" />
-                        <div
-                            class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/8 group hover:border-violet-500/30 transition-all duration-300 backdrop-blur-sm relative overflow-hidden">
-                            <!-- Gradiente de canto -->
-                            <div
-                                class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-violet-500/8 to-transparent rounded-3xl pointer-events-none" />
-                            <div class="grid md:grid-cols-2 gap-6 md:gap-12 items-center relative">
-                                <div>
-                                    <!-- Ícone + badge projeto destaque -->
-                                    <div class="flex items-center gap-3 mb-6">
-                                        <div
-                                            class="w-11 h-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500 group-hover:border-violet-400 transition-all">
-                                            <Globe class="w-5 h-5 text-violet-300 group-hover:text-white transition-colors" />
-                                        </div>
-                                        <span
-                                            class="text-[9px] uppercase tracking-widest text-violet-400/60 border border-violet-500/15 px-2.5 py-1 rounded-full">Projeto
-                                            Principal</span>
-                                    </div>
-                                    <h4
-                                        class="text-3xl font-bold mb-3 group-hover:text-violet-300 transition-colors tracking-tight">
-                                        {{ pedebemProject.name }}
-                                    </h4>
-                                    <p class="text-white/55 font-normal leading-relaxed mb-5 text-sm">
-                                        Tela real do sistema PedeBem, com foco em performance, clareza visual e fluxo de
-                                        trabalho otimizado para decisões rápidas.
-                                    </p>
-                                    <ul class="space-y-2.5 text-sm text-white/45 mb-5">
-                                        <li class="flex gap-3 items-start">
-                                            <span
-                                                class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400/60"></span>
-                                            Dashboard com indicadores essenciais em destaque.
-                                        </li>
-                                        <li class="flex gap-3 items-start">
-                                            <span
-                                                class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400/60"></span>
-                                            Componentes responsivos e prontos para escalar.
-                                        </li>
-                                        <li class="flex gap-3 items-start">
-                                            <span
-                                                class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400/60"></span>
-                                            Layout validado para operação do dia a dia.
-                                        </li>
-                                    </ul>
-                                    <p class="text-white/40 font-normal leading-relaxed mb-5 text-sm">
-                                        {{ pedebemProject.description }}
-                                    </p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span v-for="tech in pedebemProject.technologies" :key="tech"
-                                            class="text-[10px] uppercase tracking-widest text-violet-400/50 border border-violet-500/15 px-3 py-1 rounded-full bg-violet-500/5">
-                                            {{ tech }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div
-                                        class="rounded-2xl border border-violet-500/15 bg-violet-500/5 p-3 shadow-[0_0_40px_rgba(139,92,246,0.1)]">
-                                        <img src="/src/images/PedeBemTela1.png" alt="Mockup do sistema PedeBem"
-                                            class="w-full rounded-xl object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-end mt-8">
-                                <a :href="pedebemProject.url" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:bg-white hover:text-black transition-all group/btn">
-                                    Ver Projeto
-                                    <ExternalLink
-                                        class="w-3 h-3 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Outros projetos -->
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <article v-for="project in otherProjects" :key="project.name"
-                            :class="project.name === 'Automações Inteligentes' ? 'md:col-span-2' : ''"
-                            class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/8 flex flex-col justify-between group hover:border-violet-500/25 transition-all duration-300 backdrop-blur-sm relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-60 h-60 bg-violet-500/5 rounded-full blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div v-if="project.name === 'Automações Inteligentes'"
-                                class="grid md:grid-cols-2 gap-8 items-center">
-                                <div>
-                                    <div class="flex items-center gap-3 mb-6">
-                                        <div
-                                            class="w-11 h-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500 transition-all">
-                                            <Bot class="w-5 h-5 text-violet-300 group-hover:text-white transition-colors" />
-                                        </div>
-                                    </div>
-                                    <h3 class="text-3xl font-bold mb-3 group-hover:text-violet-300 transition-colors tracking-tight">
-                                        {{ project.name }}
-                                    </h3>
-                                    <p class="text-white/45 font-normal leading-relaxed mb-6 text-sm">
-                                        {{ project.description }}
-                                    </p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span v-for="tech in project.technologies" :key="tech"
-                                            class="text-[10px] uppercase tracking-widest text-violet-400/50 border border-violet-500/15 px-3 py-1 rounded-full bg-violet-500/5">
-                                            {{ tech }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="rounded-2xl border border-violet-500/10 bg-violet-500/5 p-3">
-                                    <img src="/src/images/typebot.png" alt="Mockup do Typebot"
-                                        class="w-full rounded-xl object-cover" />
-                                </div>
-                            </div>
-                            <div v-else>
-                                <div class="flex items-center gap-3 mb-6">
-                                    <div
-                                        class="w-11 h-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500 transition-all">
-                                        <Globe class="w-5 h-5 text-violet-300 group-hover:text-white transition-colors" />
-                                    </div>
-                                </div>
-                                <h3 class="text-3xl font-bold mb-3 group-hover:text-violet-300 transition-colors tracking-tight">
-                                    {{ project.name }}
-                                </h3>
-                                <p class="text-white/45 font-normal leading-relaxed mb-6 text-sm">
-                                    {{ project.description }}
-                                </p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span v-for="tech in project.technologies" :key="tech"
-                                        class="text-[10px] uppercase tracking-widest text-violet-400/50 border border-violet-500/15 px-3 py-1 rounded-full bg-violet-500/5">
-                                        {{ tech }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex justify-end mt-10">
-                                <a :href="project.url" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:bg-white hover:text-black transition-all">
-                                    Ver Projeto
-                                    <ExternalLink class="w-3 h-3" />
-                                </a>
-                            </div>
-                        </article>
                     </div>
                 </div>
             </section>
 
-            <!-- ═══════════════ TECNOLOGIAS ═══════════════ -->
-            <section id="sobre" class="py-28 px-6 md:px-24 border-t border-white/[0.06]">
-                <div class="max-w-6xl mx-auto">
-                    <div class="mb-16">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-[10px] uppercase tracking-widest text-violet-400/70 mb-6">
-                            <Code2 class="w-3 h-3" />
-                            Stack Técnica
-                        </div>
-                        <h3 class="text-4xl font-bold tracking-tighter text-white mb-4">
-                            Tecnologias com foco em <span
-                                class="italic serif bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">resultado</span>
-                        </h3>
-                        <p class="text-white/40 font-normal max-w-2xl leading-relaxed text-sm">
-                            Seleção enxuta e estratégica de tecnologias que uso no dia a dia, com prioridade no que
-                            gera impacto real em produto, performance e automação.
-                        </p>
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 4. AUTOMAÃ‡Ã•ES COM TYPEBOT
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section class="min-h-[80vh] flex flex-col md:flex-row">
+                <!-- Esquerda: screenshot -->
+                <div class="md:w-1/2 min-h-[40vh] md:min-h-full overflow-hidden">
+                    <img src="/src/images/typebot.png" alt="Typebot Flow"
+                        class="w-full h-full object-cover object-left" />
+                </div>
+                <!-- Direita: conteÃºdo -->
+                <div class="md:w-1/2 bg-[#080c1e] px-8 md:px-16 py-16 md:py-24 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 self-start">
+                        Projetos em Destaque
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6 leading-tight">
+                        AutomaÃ§Ãµes Inteligentes com Typebot
+                    </h2>
+                    <p class="text-white/65 leading-relaxed mb-8 text-sm md:text-base">
+                        Desenvolvimento de <strong class="text-white">bots de atendimento e triagem</strong> utilizando
+                        a plataforma Typebot
+                        para otimizaÃ§Ã£o de leads. Fluxos lÃ³gicos avanÃ§ados com integraÃ§Ã£o de APIs para
+                        automaÃ§Ã£o de processos comerciais e atendimento ao cliente.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span v-for="tech in automacaoProject?.technologies" :key="tech"
+                            class="text-[11px] font-semibold uppercase tracking-widest text-amber-400 border border-amber-400/50 px-4 py-1.5 rounded-full">
+                            {{ tech }}
+                        </span>
                     </div>
-                    <div class="space-y-14">
+                </div>
+            </section>
+
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 5. TECNOLOGIAS & ESPECIALIDADES
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="tecnologias" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                        Stack TÃ©cnica
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Tecnologias &amp; Especialidades</h2>
+                    <p class="text-white/55 max-w-3xl mb-14 leading-relaxed">
+                        SeleÃ§Ã£o enxuta e estratÃ©gica de tecnologias com prioridade no que gera impacto real em produto,
+                        performance e automaÃ§Ã£o.
+                    </p>
+                    <!-- 3 colunas -->
+                    <div class="grid md:grid-cols-3 gap-10">
                         <!-- Principais -->
                         <div>
                             <div class="flex items-center gap-3 mb-6">
-                                <h4 class="text-xs uppercase tracking-[0.3em] text-violet-300 font-semibold">Principais
-                                </h4>
-                                <div class="flex-1 h-px bg-violet-500/15" />
-                                <span class="text-[10px] uppercase tracking-[0.2em] text-white/30">Maior domínio</span>
+                                <Server class="w-8 h-8 text-amber-400" />
+                                <h3 class="text-xl font-bold">Principais</h3>
                             </div>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <div v-for="tech in techGroups.primary" :key="tech.name"
-                                    class="rounded-2xl border border-violet-500/25 bg-gradient-to-br from-violet-500/8 to-fuchsia-500/4 p-6 hover:border-violet-400/40 hover:from-violet-500/12 transition-all duration-300 group/card backdrop-blur-sm">
-                                    <component :is="tech.icon"
-                                        class="w-6 h-6 text-violet-300 mb-4 group-hover/card:scale-110 transition-transform" />
-                                    <div class="text-base font-semibold text-white mb-1">{{ tech.name }}</div>
-                                    <div class="text-[10px] uppercase tracking-[0.3em] text-violet-400/50">
-                                        {{ tech.category }}</div>
-                                </div>
-                            </div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">PHP</strong> â€” Backend</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">JavaScript</strong> â€” Frontend</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">CSS</strong> â€” UI Styling</span>
+                                </li>
+                            </ul>
                         </div>
-                        <!-- Secundárias -->
+                        <!-- SecundÃ¡rias -->
                         <div>
                             <div class="flex items-center gap-3 mb-6">
-                                <h4 class="text-xs uppercase tracking-[0.3em] text-white/50 font-semibold">Secundárias
-                                </h4>
-                                <div class="flex-1 h-px bg-white/8" />
+                                <Layers class="w-8 h-8 text-amber-400" />
+                                <h3 class="text-xl font-bold">SecundÃ¡rias</h3>
                             </div>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <div v-for="tech in techGroups.secondary" :key="tech.name"
-                                    class="rounded-2xl border border-white/8 bg-white/[0.03] p-6 hover:border-violet-500/25 hover:bg-violet-500/5 transition-all duration-300 group/card backdrop-blur-sm">
-                                    <component :is="tech.icon"
-                                        class="w-6 h-6 text-violet-400/70 mb-4 group-hover/card:text-violet-300 transition-colors" />
-                                    <div class="text-base font-semibold text-white/80 mb-1">{{ tech.name }}</div>
-                                    <div class="text-[10px] uppercase tracking-[0.3em] text-white/35">
-                                        {{ tech.category }}</div>
-                                </div>
-                            </div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Bootstrap</strong> â€” Frontend</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Tailwind</strong> â€” Frontend</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Ajax</strong> â€” IntegraÃ§Ãµes</span>
+                                </li>
+                            </ul>
                         </div>
                         <!-- Especialidades -->
                         <div>
                             <div class="flex items-center gap-3 mb-6">
-                                <h4 class="text-xs uppercase tracking-[0.3em] text-white/50 font-semibold">
-                                    Especialidades</h4>
-                                <div class="flex-1 h-px bg-white/8" />
-                                <span class="text-[10px] uppercase tracking-[0.2em] text-white/30">Sistemas &
-                                    automação</span>
+                                <Bot class="w-8 h-8 text-amber-400" />
+                                <h3 class="text-xl font-bold">Especialidades</h3>
                             </div>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <div v-for="tech in techGroups.specialties" :key="tech.name"
-                                    class="rounded-2xl border border-white/8 bg-white/[0.03] p-6 hover:border-fuchsia-500/25 hover:bg-fuchsia-500/5 transition-all duration-300 group/card backdrop-blur-sm">
-                                    <component :is="tech.icon"
-                                        class="w-6 h-6 text-fuchsia-400/70 mb-4 group-hover/card:text-fuchsia-300 transition-colors" />
-                                    <div class="text-base font-semibold text-white/80 mb-1">{{ tech.name }}</div>
-                                    <div class="text-[10px] uppercase tracking-[0.3em] text-white/35">
-                                        {{ tech.category }}</div>
-                                </div>
-                            </div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Moodle</strong> â€” EAD</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Typebot</strong> â€” AutomaÃ§Ã£o</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-white/80">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span><strong class="text-white">Sistemas</strong> â€” AutomaÃ§Ã£o</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ═══════════════ PROFICIÊNCIA / SOBRE ═══════════════ -->
-            <section id="proeficiencia" class="py-28 px-6 md:px-24 relative">
-                <div
-                    class="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/15 to-transparent pointer-events-none -z-10" />
-                <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-[10px] uppercase tracking-widest text-violet-400/70 mb-8">
-                            <Zap class="w-3 h-3" />
-                            Proficiência & Entrega
-                        </div>
-                        <h3 class="text-4xl font-bold tracking-tighter mb-6 text-white">
-                            O quanto posso <span
-                                class="italic serif bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">impactar</span>
-                            sua empresa?
-                        </h3>
-                        <p class="text-white/45 font-normal leading-relaxed mb-10 text-sm">
-                            Minha versatilidade permite atuar desde o design visual até a gestão estratégica de
-                            projetos, garantindo uma entrega técnica refinada e humanizada.
-                        </p>
-                        <div class="grid grid-cols-2 gap-5">
-                            <div
-                                class="p-6 rounded-2xl bg-white/[0.03] border border-violet-500/15 hover:border-violet-500/30 transition-colors">
-                                <div
-                                    class="text-4xl font-bold bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent mb-2">
-                                    +20</div>
-                                <div class="text-[10px] uppercase tracking-widest text-white/35">Anos de Experiência
-                                </div>
-                            </div>
-                            <div
-                                class="p-6 rounded-2xl bg-white/[0.03] border border-violet-500/15 hover:border-violet-500/30 transition-colors">
-                                <div
-                                    class="text-4xl font-bold bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent mb-2">
-                                    100%</div>
-                                <div class="text-[10px] uppercase tracking-widest text-white/35">Comprometimento</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-7" ref="statsRef">
-                        <div v-for="stat in portfolio.stats" :key="stat.label" class="space-y-2.5">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs uppercase tracking-widest text-white/60 font-medium">{{
-                                    stat.label }}</span>
-                                <span
-                                    class="text-xs font-mono font-semibold text-violet-300 tabular-nums">{{ stat.value }}%</span>
-                            </div>
-                            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                <div
-                                    class="h-full bg-gradient-to-r from-violet-600 via-violet-400 to-fuchsia-400 transition-[width] duration-[3500ms] ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full"
-                                    :style="{ width: statsVisible ? stat.value + '%' : '0%' }" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══════════════ EXPERIÊNCIA ═══════════════ -->
-            <section id="experiencia" class="py-28 px-6 md:px-24 border-t border-white/[0.06] relative overflow-hidden">
-                <div class="absolute top-20 right-0 w-80 h-80 bg-violet-600/8 blur-[100px] rounded-full -z-10 pointer-events-none" />
-                <div class="max-w-6xl mx-auto relative">
-                    <div class="mb-20">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-[10px] uppercase tracking-widest text-violet-400/70 mb-6">
-                            <Briefcase class="w-3 h-3" />
-                            Trajetória Profissional
-                        </div>
-                        <h3 class="text-4xl font-bold tracking-tighter text-white">Experiência & <span
-                                class="italic serif bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">Histórico</span>
-                        </h3>
-                    </div>
-
-                    <!-- Linha vertical da timeline -->
-                    <div class="absolute left-4 top-40 bottom-8 w-px bg-gradient-to-b from-violet-500/40 via-violet-500/20 to-transparent" />
-
-                    <div class="space-y-20">
-                        <div v-for="experience in portfolio.experiences" :key="experience.company"
-                            class="relative grid md:grid-cols-[200px_1fr] gap-8 group pl-12">
-                            <!-- Dot da timeline -->
-                            <div
-                                class="absolute left-[11px] top-2.5 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-violet-400 to-fuchsia-400 shadow-[0_0_14px_rgba(139,92,246,0.7)] timeline-dot" />
-                            <!-- Período -->
-                            <div class="text-xs text-violet-400/50 font-mono pt-3 tracking-wide">
-                                {{ experience.period }}</div>
-                            <!-- Card da experiência -->
-                            <div
-                                class="rounded-3xl border border-white/[0.06] bg-white/[0.03] p-6 md:p-8 transition-all duration-300 group-hover:border-violet-500/25 group-hover:bg-violet-500/[0.04] group-hover:-translate-y-1 backdrop-blur-sm">
-                                <h3
-                                    class="text-2xl md:text-3xl font-bold mb-1.5 tracking-tight group-hover:text-violet-300 transition-colors">
-                                    {{ experience.role }}
-                                </h3>
-                                <div
-                                    class="text-white/25 mb-6 uppercase tracking-widest text-[10px] flex items-center gap-2">
-                                    <Briefcase class="w-3 h-3" />
-                                    {{ experience.company }}
-                                </div>
-                                <ul class="space-y-4">
-                                    <li v-for="achievement in experience.achievements" :key="achievement"
-                                        class="text-white/55 font-normal leading-relaxed flex gap-3 text-sm">
-                                        <span
-                                            class="w-1.5 h-1.5 rounded-full bg-violet-500/25 mt-2 shrink-0 group-hover:bg-violet-400 transition-colors" />
-                                        {{ achievement }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══════════════ CONTATO ═══════════════ -->
-            <section id="contato" class="py-32 px-6 md:px-24 border-t border-white/[0.06] relative overflow-hidden">
-                <!-- Glow de fundo -->
-                <div
-                    class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh] bg-gradient-to-t from-violet-600/12 to-transparent -z-10 blur-3xl pointer-events-none" />
-                <div class="max-w-4xl mx-auto text-center">
-                    <div
-                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-[10px] uppercase tracking-widest text-violet-400/70 mb-10">
-                        <Send class="w-3 h-3" />
-                        Vamos Conversar?
-                    </div>
-                    <h3 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.05]">
-                        Pronto para levar seu <br />
-                        <span
-                            class="italic serif bg-gradient-to-r from-violet-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent">negócio</span>
-                        ao próximo nível?
-                    </h3>
-                    <p class="text-sm md:text-base text-white/40 font-normal tracking-wide mb-14 max-w-lg mx-auto leading-relaxed">
-                        Disponível para projetos freelance e parcerias estratégicas.<br />
-                        <span class="text-violet-300/60">Resposta em até 24 horas.</span>
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 6. PROFICIÃŠNCIA
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="proficiencia" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                        ProficiÃªncia
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">O Quanto Posso Impactar Sua Empresa?
+                    </h2>
+                    <p class="text-white/55 max-w-3xl mb-14 leading-relaxed">
+                        Minha versatilidade permite atuar desde o design visual atÃ© a gestÃ£o estratÃ©gica de projetos,
+                        garantindo uma entrega tÃ©cnica refinada e humanizada.
                     </p>
+                    <!-- 2x2 grid de barras -->
+                    <div class="grid md:grid-cols-2 gap-x-16 gap-y-10" ref="statsRef">
+                        <!-- Web Design -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-2">
+                                <div class="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-amber-400 rounded-full transition-[width] duration-[3500ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                                        :style="{ width: statsVisible ? '92%' : '0%' }" />
+                                </div>
+                                <span class="text-white font-bold text-sm w-10 shrink-0">92%</span>
+                            </div>
+                            <p class="text-white/70 text-sm">Web Design</p>
+                        </div>
+                        <!-- EAD/Moodle -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-2">
+                                <div class="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-rose-500 rounded-full transition-[width] duration-[3500ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                                        :style="{ width: statsVisible ? '88%' : '0%' }" />
+                                </div>
+                                <span class="text-white font-bold text-sm w-10 shrink-0">88%</span>
+                            </div>
+                            <p class="text-white/70 text-sm">EAD / Moodle</p>
+                        </div>
+                        <!-- GestÃ£o -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-2">
+                                <div class="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-orange-400 rounded-full transition-[width] duration-[3500ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                                        :style="{ width: statsVisible ? '86%' : '0%' }" />
+                                </div>
+                                <span class="text-white font-bold text-sm w-10 shrink-0">86%</span>
+                            </div>
+                            <p class="text-white/70 text-sm">GestÃ£o de Projetos</p>
+                        </div>
+                        <!-- PHP -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-2">
+                                <div class="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full transition-[width] duration-[3500ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                                        :style="{ width: statsVisible ? '80%' : '0%' }" />
+                                </div>
+                                <span class="text-white font-bold text-sm w-10 shrink-0">80%</span>
+                            </div>
+                            <p class="text-white/70 text-sm">Desenvolvimento PHP</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                    <!-- Botões CTA -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 7. WEB DESIGNER & DESENVOLVEDOR
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="experiencia" class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                        TrajetÃ³ria Profissional
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Web Designer &amp; Desenvolvedor</h2>
+                    <p class="text-white/60 mb-12 font-medium">
+                        <strong class="text-white/90">AutÃ´nomo / Consultoria Tech</strong> â€” Longa data
+                    </p>
+                    <!-- 3 colunas de achievements -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div v-for="(ach, i) in portfolio.experiences[0].achievements" :key="i">
+                            <div class="flex items-center gap-2 mb-3">
+                                <ArrowRight class="w-5 h-5 shrink-0"
+                                    :class="[i === 0 ? 'text-amber-400' : i === 1 ? 'text-rose-400' : 'text-amber-400']" />
+                                <h3 class="font-bold text-white text-lg">{{ achTitles[0][i] }}</h3>
+                            </div>
+                            <p class="text-white/55 text-sm leading-relaxed">{{ ach }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 8. MOODLE & GESTOR DE PROJETOS
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                        TrajetÃ³ria Profissional
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Especialista em Moodle &amp; Gestor
+                        de Projetos Online</h2>
+                    <p class="text-white/60 mb-12 font-medium">
+                        <strong class="text-white/90">InstituiÃ§Ãµes de Ensino e EAD</strong> â€” ContÃ­nuo
+                    </p>
+                    <!-- 2 cards com imagem -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Plataforma Moodle -->
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Plataforma Moodle</h3>
+                            <p class="text-white/55 text-sm leading-relaxed mb-6">
+                                ConfiguraÃ§Ã£o e administraÃ§Ã£o tÃ©cnica para ambientes virtuais de
+                                aprendizagem, com aplicaÃ§Ã£o de metodologias de GerÃªncia de
+                                Projetos Online.
+                            </p>
+                            <div
+                                class="rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-violet-400 via-orange-300 to-amber-300 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="text-7xl mb-3">ðŸŽ“</div>
+                                    <p class="text-violet-900/60 font-medium text-sm">Moodle / e-Learning</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- AutomaÃ§Ã£o de Atendimento -->
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">AutomaÃ§Ã£o de Atendimento</h3>
+                            <p class="text-white/55 text-sm leading-relaxed mb-6">
+                                Desenvolvimento de assistentes virtuais e automaÃ§Ã£o de atendimento
+                                via Typebot, estruturando cursos e fluxos de trabalho de forma
+                                eficiente.
+                            </p>
+                            <div
+                                class="rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-orange-300 via-pink-300 to-amber-200 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="text-7xl mb-3">ðŸ¤–</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">AutomaÃ§Ã£o / Typebot</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 9. FORMAÃ‡ÃƒO EM MÃšSICA & EDUCAÃ‡ÃƒO
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section class="py-20 md:py-28 px-8 md:px-20 bg-[#080c1e]">
+                <div class="max-w-7xl mx-auto">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                        TrajetÃ³ria Profissional
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">FormaÃ§Ã£o em MÃºsica &amp; EducaÃ§Ã£o
+                    </h2>
+                    <!-- 2 cards: imagem em cima, texto abaixo -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Especialista em MÃºsica -->
+                        <div>
+                            <div
+                                class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 bg-gradient-to-br from-orange-300 via-amber-200 to-rose-300 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="text-7xl mb-3">ðŸŽµ</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">MÃºsica & RegÃªncia</p>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Especialista em MÃºsica e RegÃªncia</h3>
+                            <p class="text-white/55 text-sm leading-relaxed">
+                                AtuaÃ§Ã£o especializada em MÃºsica na Igreja, regÃªncia de coro de vozes e
+                                aplicaÃ§Ã£o de Licenciatura em MÃºsica para desenvolvimento de grupos
+                                vocais.
+                            </p>
+                        </div>
+                        <!-- Professor de Instrumentos -->
+                        <div>
+                            <div
+                                class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 bg-gradient-to-br from-amber-200 via-orange-300 to-rose-300 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="text-7xl mb-3">ðŸŽ¸</div>
+                                    <p class="text-orange-900/60 font-medium text-sm">ViolÃ£o Â· Teclado Â· Flauta</p>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Professor de Instrumentos Musicais</h3>
+                            <p class="text-white/55 text-sm leading-relaxed">
+                                InstruÃ§Ã£o tÃ©cnica em ViolÃ£o, Teclado e Flauta Doce para diferentes faixas
+                                etÃ¡rias, com material pedagÃ³gico prÃ³prio baseado na formaÃ§Ã£o em
+                                MagistÃ©rio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                 10. CONTATO
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+            <section id="contato" class="min-h-[80vh] flex flex-col md:flex-row bg-[#080c1e]">
+                <!-- Esquerda: conteÃºdo -->
+                <div class="md:w-1/2 px-8 md:px-16 py-20 md:py-28 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-amber-950/80 text-amber-400 text-[10px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 self-start">
+                        Contato
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Vamos Conversar?</h2>
+                    <p class="text-white/65 leading-relaxed mb-10 max-w-md">
+                        Pronto para levar seu negÃ³cio ao prÃ³ximo nÃ­vel? DisponÃ­vel para <strong
+                            class="text-white">projetos freelance</strong> e
+                        <strong class="text-white">parcerias estratÃ©gicas</strong>. EspÃ­rito Santo, Brasil.
+                    </p>
+                    <!-- Cards de contato -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                         <a v-if="portfolio.contact?.whatsapp" :href="whatsappLink" target="_blank"
                             rel="noopener noreferrer"
-                            class="flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full font-bold uppercase tracking-widest text-xs hover:from-green-400 hover:to-emerald-400 hover:scale-105 transition-all shadow-xl shadow-green-500/25 whatsapp-glow w-full sm:w-auto justify-center">
-                            <Send class="w-4 h-4" />
+                            class="border border-amber-400/40 rounded-2xl p-5 hover:bg-amber-400/5 transition-all group">
+                            <div class="flex items-center gap-2 mb-2">
+                                <Send class="w-4 h-4 text-amber-400" />
+                                <span class="font-bold text-white">WhatsApp</span>
+                            </div>
+                            <p class="text-white/50 text-sm">Resposta rÃ¡pida e direta para alinhar seu projeto.</p>
+                        </a>
+                        <a href="mailto:contato@sergioschultz.com"
+                            class="border border-rose-500/40 rounded-2xl p-5 hover:bg-rose-500/5 transition-all">
+                            <div class="flex items-center gap-2 mb-2">
+                                <Mail class="w-4 h-4 text-rose-400" />
+                                <span class="font-bold text-white">E-mail</span>
+                            </div>
+                            <p class="text-white/50 text-sm">contato@sergioschultz.com</p>
+                        </a>
+                        <div class="border border-amber-400/40 rounded-2xl p-5 sm:col-span-2">
+                            <div class="flex items-center gap-2 mb-2">
+                                <MapPin class="w-4 h-4 text-amber-400" />
+                                <span class="font-bold text-white">LocalizaÃ§Ã£o</span>
+                            </div>
+                            <p class="text-white/50 text-sm">EspÃ­rito Santo, Brasil</p>
+                        </div>
+                    </div>
+                    <!-- BotÃµes CTA -->
+                    <div class="flex flex-wrap gap-4">
+                        <a v-if="portfolio.contact?.whatsapp" :href="whatsappLink" target="_blank"
+                            rel="noopener noreferrer"
+                            class="px-7 py-3 bg-amber-400 text-black font-bold rounded-full text-sm hover:bg-amber-300 transition-all">
                             WhatsApp
                         </a>
                         <a href="mailto:contato@sergioschultz.com"
-                            class="flex items-center gap-3 px-10 py-5 border border-violet-500/25 text-violet-300 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-violet-500/10 hover:border-violet-400/40 transition-all w-full sm:w-auto justify-center backdrop-blur-sm">
-                            <Mail class="w-4 h-4" /> Enviar Email
+                            class="px-7 py-3 border-2 border-amber-400 text-amber-400 font-bold rounded-full text-sm hover:bg-amber-400/10 transition-all">
+                            Enviar Email
                         </a>
                     </div>
-
-                    <!-- Copiar link -->
-                    <div class="flex justify-center mb-20">
-                        <button type="button" @click="copyPortfolioLink"
-                            class="flex items-center gap-3 px-7 py-3 rounded-full border border-white/8 text-white/50 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-                            <Link class="w-3.5 h-3.5" />
-                            {{ copyLabel }}
-                        </button>
-                    </div>
-
-                    <!-- Redes sociais -->
-                    <div class="flex justify-center gap-4">
-                        <a href="https://www.facebook.com/Sergioschultzz" target="_blank" rel="noopener noreferrer"
-                            class="p-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-violet-500/10 hover:border-violet-500/25 transition-all group/social">
-                            <Facebook
-                                class="w-5 h-5 text-white/30 group-hover/social:text-violet-300 transition-colors" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/sergio-schultz-48b779280/" target="_blank"
-                            rel="noopener noreferrer"
-                            class="p-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-violet-500/10 hover:border-violet-500/25 transition-all group/social">
-                            <Linkedin
-                                class="w-5 h-5 text-white/30 group-hover/social:text-violet-300 transition-colors" />
-                        </a>
-                        <a href="https://github.com/schultz196" target="_blank" rel="noopener noreferrer"
-                            class="p-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-violet-500/10 hover:border-violet-500/25 transition-all group/social">
-                            <Github
-                                class="w-5 h-5 text-white/30 group-hover/social:text-violet-300 transition-colors" />
-                        </a>
-                    </div>
-
-                    <div v-if="portfolio.contact?.location"
-                        class="mt-16 text-[10px] uppercase tracking-[0.4em] text-white/15">
-                        {{ portfolio.contact.location }}
+                </div>
+                <!-- Direita: ilustraÃ§Ã£o -->
+                <div
+                    class="md:w-1/2 min-h-[50vh] md:min-h-full bg-gradient-to-br from-orange-300 via-amber-200 to-rose-300 flex items-center justify-center">
+                    <div class="text-center p-8">
+                        <div class="text-8xl mb-4">ðŸ¤</div>
+                        <p class="text-orange-900/60 font-medium">Vamos trabalhar juntos!</p>
                     </div>
                 </div>
             </section>
 
             <!-- Footer -->
             <footer
-                class="py-10 px-6 md:px-24 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 text-white/15 text-[10px] uppercase tracking-[0.3em]">
-                <div>© 2026 SERGIO SCHULTZ • Web Designer & Desenvolvedor</div>
+                class="py-8 px-8 md:px-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-white/20 text-[10px] uppercase tracking-[0.3em]">
+                <div>Â© 2026 SERGIO SCHULTZ â€¢ Web Designer &amp; Desenvolvedor</div>
                 <div class="flex gap-8">
-                    <span class="hover:text-violet-300 transition-colors cursor-default">Privacidade</span>
-                    <span class="hover:text-violet-300 transition-colors cursor-default">Termos</span>
+                    <a href="https://www.linkedin.com/in/sergio-schultz-48b779280/" target="_blank"
+                        rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">LinkedIn</a>
+                    <a href="https://github.com/schultz196" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-amber-400 transition-colors">GitHub</a>
+                    <a href="https://www.facebook.com/Sergioschultzz" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-amber-400 transition-colors">Facebook</a>
                 </div>
             </footer>
         </main>
     </div>
 </template>
-
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import {
+    ArrowRight,
     Bot,
-    BookOpen,
     Briefcase,
-    ChevronDown,
-    Code2,
-    ExternalLink,
-    Facebook,
-    Github,
-    Globe,
     Layers,
-    Linkedin,
-    Link,
     Mail,
-    Server,
-    Sparkles,
-    Zap,
+    MapPin,
     Send,
-    Palette,
+    Server,
 } from 'lucide-vue-next';
 import { usePortfolioStore } from './stores/portfolio';
 
 const menuOpen = ref(false);
-const toggleMenu = () => {
-    menuOpen.value = !menuOpen.value;
-};
+const toggleMenu = () => { menuOpen.value = !menuOpen.value; };
+
+const navItems = [
+    { id: 'home',        label: 'Home' },
+    { id: 'sobre',       label: 'Sobre' },
+    { id: 'projetos',    label: 'Projetos' },
+    { id: 'tecnologias', label: 'Tecnologias' },
+    { id: 'proficiencia',label: 'ProficiÃªncia' },
+    { id: 'experiencia', label: 'TrajetÃ³ria' },
+    { id: 'contato',     label: 'Contato' },
+];
 
 const activeSection = ref('home');
 const scrollProgress = ref(0);
@@ -620,62 +601,36 @@ const cursorRef = ref<HTMLElement | null>(null);
 
 const store = usePortfolioStore();
 const portfolio = computed(() => store.portfolio);
-const pedebemProject = computed(() => portfolio.value?.projects.find((project) => project.name === 'PedeBem'));
-const otherProjects = computed(() => portfolio.value?.projects.filter((project) => project.name !== 'PedeBem') ?? []);
-const techGroups = {
-    primary: [
-        { name: 'PHP', category: 'Backend', icon: Server },
-        { name: 'JavaScript', category: 'Frontend', icon: Code2 },
-        { name: 'CSS', category: 'UI Styling', icon: Palette },
-    ],
-    secondary: [
-        { name: 'Bootstrap', category: 'Frontend', icon: Layers },
-        { name: 'Tailwind', category: 'Frontend', icon: Layers },
-        { name: 'Ajax', category: 'Integrações', icon: Zap },
-    ],
-    specialties: [
-        { name: 'Moodle', category: 'EAD', icon: BookOpen },
-        { name: 'Typebot', category: 'Automação', icon: Bot },
-        { name: 'Automação', category: 'Sistemas', icon: Sparkles },
-    ],
+const pedebemProject = computed(() => portfolio.value?.projects.find(p => p.name === 'PedeBem'));
+const automacaoProject = computed(() => portfolio.value?.projects.find(p => p.name === 'AutomaÃ§Ãµes Inteligentes'));
+
+// TÃ­tulos curtos para os achievements de cada experiÃªncia
+const achTitles: Record<number, string[]> = {
+    0: ['Interfaces Modernas', 'IntegraÃ§Ã£o de Sistemas', 'PedeBem'],
+    1: ['Plataforma Moodle', 'GerÃªncia de Projetos', 'AutomaÃ§Ã£o Typebot'],
+    2: ['MÃºsica na Igreja', 'RegÃªncia Coral', 'Licenciatura em MÃºsica'],
+    3: ['ViolÃ£o & Teclado', 'Flauta Doce', 'Material PedagÃ³gico'],
 };
+
 const statsVisible = ref(false);
 const statsRef = ref<HTMLElement | null>(null);
-const portfolioLink = 'https://schultz196.github.io/sergio-portfolio/';
-const copyLabel = ref('Copiar link');
-const copyPortfolioLink = async () => {
-    try {
-        await navigator.clipboard.writeText(portfolioLink);
-        copyLabel.value = 'Link copiado';
-    } catch (error) {
-        copyLabel.value = 'Copie manualmente';
-    }
-    window.setTimeout(() => {
-        copyLabel.value = 'Copiar link';
-    }, 2200);
-};
+
 const whatsappLink = computed(() => {
     const phone = portfolio.value?.contact?.whatsapp ?? '';
     const digits = phone.replace(/\D/g, '');
     return digits ? `https://wa.me/55${digits}` : '#';
 });
 
-const sections = ['home', 'projetos', 'sobre', 'proeficiencia', 'experiencia', 'contato'];
+const sections = ['home', 'sobre', 'projetos', 'tecnologias', 'proficiencia', 'experiencia', 'contato'];
 const onScroll = () => {
     const offset = 140;
     let current = activeSection.value;
     for (const id of sections) {
         const el = document.getElementById(id);
-        if (!el) {
-            continue;
-        }
-        const top = el.getBoundingClientRect().top;
-        if (top <= offset) {
-            current = id;
-        }
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= offset) current = id;
     }
     activeSection.value = current;
-
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
@@ -685,64 +640,45 @@ let statsObserver: IntersectionObserver | null = null;
 let cursorRaf = 0;
 
 const onMouseMove = (event: MouseEvent) => {
-    if (!cursorRef.value) {
-        return;
-    }
+    if (!cursorRef.value) return;
     const { clientX, clientY } = event;
-    if (cursorRaf) {
-        cancelAnimationFrame(cursorRaf);
-    }
+    if (cursorRaf) cancelAnimationFrame(cursorRaf);
     cursorRaf = requestAnimationFrame(() => {
-        if (!cursorRef.value) {
-            return;
-        }
+        if (!cursorRef.value) return;
         cursorRef.value.style.transform = `translate(${clientX}px, ${clientY}px)`;
     });
 };
-
-const onCursorEnter = () => {
-    cursorRef.value?.classList.add('custom-cursor--active');
-};
-
-const onCursorLeave = () => {
-    cursorRef.value?.classList.remove('custom-cursor--active');
-};
+const onCursorEnter = () => cursorRef.value?.classList.add('custom-cursor--active');
+const onCursorLeave = () => cursorRef.value?.classList.remove('custom-cursor--active');
 
 onMounted(() => {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    document.querySelectorAll('a, button, [role="button"]').forEach((el) => {
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
         el.addEventListener('mouseenter', onCursorEnter);
         el.addEventListener('mouseleave', onCursorLeave);
     });
-    if (!statsRef.value) {
-        return;
-    }
-    statsObserver = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                statsVisible.value = true;
-                statsObserver?.disconnect();
-                statsObserver = null;
-            }
-        },
-        { threshold: 0.2 }
-    );
+    if (!statsRef.value) return;
+    statsObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            statsVisible.value = true;
+            statsObserver?.disconnect();
+            statsObserver = null;
+        }
+    }, { threshold: 0.2 });
     statsObserver.observe(statsRef.value);
 });
 
 onUnmounted(() => {
     window.removeEventListener('scroll', onScroll);
     window.removeEventListener('mousemove', onMouseMove);
-    document.querySelectorAll('a, button, [role="button"]').forEach((el) => {
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
         el.removeEventListener('mouseenter', onCursorEnter);
         el.removeEventListener('mouseleave', onCursorLeave);
     });
     statsObserver?.disconnect();
     statsObserver = null;
-    if (cursorRaf) {
-        cancelAnimationFrame(cursorRaf);
-    }
+    if (cursorRaf) cancelAnimationFrame(cursorRaf);
 });
 </script>
