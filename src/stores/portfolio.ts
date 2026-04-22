@@ -99,7 +99,7 @@ export const usePortfolioStore = defineStore('portfolio', {
         },
       ],
       contact: {
-        whatsapp: '27 997894471',
+        whatsapp: 'pendente',
         location: 'Espírito Santo, Brasil',
         age: 46,
       },
